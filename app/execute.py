@@ -10,9 +10,6 @@ GARBAGE_WORDS = ["por favor"]
 def clean_command(command):
     command = command.strip()
 
-    if not any(word in command for word in ACTIVATION_WORDS):
-        return ""
-
     for palavra in ACTIVATION_WORDS + GARBAGE_WORDS:
         command = command.replace(palavra, "")
 
@@ -23,10 +20,10 @@ def clean_command(command):
 
 def execute_automation(command):
     command = clean_command(command)
-    #print(f"DEBUG: Comando processado: ['{command}']")
-
     if not command:
         return
+
+    # print(f"DEBUG: Comando processado: ['{command}']")
     # ====================
     # OPEN APPS
     # ====================
