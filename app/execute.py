@@ -4,14 +4,16 @@ from services.voice import MotorVoz
 
 tts = MotorVoz()
 
+ACTIVATION_WORDS = ["jarvis", "ei jarvis", "ok jarvis"]
+GARBAGE_WORDS = ["por favor"]
 
 def clean_command(command):
-    command = command.lower().strip()
+    command = command.strip()
 
-    # palavras que você quer ignorar
-    garbage_words = ["por favor"]
+    if not any(word in command for word in ACTIVATION_WORDS):
+        return ""
 
-    for palavra in garbage_words:
+    for palavra in ACTIVATION_WORDS + GARBAGE_WORDS:
         command = command.replace(palavra, "")
 
     command = command.replace(",", " ")
@@ -23,6 +25,8 @@ def execute_automation(command):
     command = clean_command(command)
     #print(f"DEBUG: Comando processado: ['{command}']")
 
+    if not command:
+        return
     # ====================
     # OPEN APPS
     # ====================

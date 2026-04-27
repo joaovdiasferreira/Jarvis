@@ -6,7 +6,7 @@ import time
 
 
 class MotorVoz:
-    def __init__(self, voz="pt-BR-FranciscaNeural"):
+    def __init__(self, voz="pt-BR-AntonioNeural"):
         self.voz = voz
         self.arquivo_temp = "output_voz.mp3"
 
